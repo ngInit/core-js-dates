@@ -198,10 +198,11 @@ function getCountWeekendsInMonth(/* month, year */) {
  * Date(2024, 0, 31) => 5
  * Date(2024, 1, 23) => 8
  */
-function getWeekNumberByDate(date) {
-  const currentYear = new Date(date.getFullYear().toString()).toString();
-  const daysBetween = getCountDaysOnPeriod(currentYear, date.toString()) + 1;
-  return Math.ceil(daysBetween / 7);
+function getWeekNumberByDate(/* date */) {
+  // const currentYear = new Date(date.getFullYear().toString()).toString();
+  // const daysBetween = getCountDaysOnPeriod(currentYear, date.toString()) + 1;
+  // return Math.ceil(daysBetween / 7);
+  throw new Error('Not implemented');
 }
 
 /**
