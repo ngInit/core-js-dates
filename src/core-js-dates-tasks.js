@@ -217,18 +217,17 @@ function getWeekNumberByDate(/* date */) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  // let isDone = false;
-  // while (!isDone) {
-  //   const nextFriday = getNextFriday(date);
-  //   nextFriday.setHours(0, 0, 0);
-  //   if (nextFriday.getDate() === 13) {
-  //     isDone = true;
-  //     return nextFriday;
-  //   }
-  // }
-  // return date;
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  let isDone = false;
+  while (!isDone) {
+    const nextFriday = getNextFriday(date);
+    nextFriday.setHours(0, 0, 0);
+    if (nextFriday.getDate() === 13) {
+      isDone = true;
+      return nextFriday;
+    }
+  }
+  return date;
 }
 
 /**
