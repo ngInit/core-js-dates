@@ -256,8 +256,41 @@ function getQuarter(date) {
  * { start: '01-01-2024', end: '15-01-2024' }, 1, 3 => ['01-01-2024', '05-01-2024', '09-01-2024', '13-01-2024']
  * { start: '01-01-2024', end: '10-01-2024' }, 1, 1 => ['01-01-2024', '03-01-2024', '05-01-2024', '07-01-2024', '09-01-2024']
  */
-function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
-  throw new Error('Not implemented');
+function getWorkSchedule(period, countWorkDays, countOffDays) {
+  const date = new Date(period.start.split('-').reverse().join('-'));
+  const endDate = new Date(period.end.split('-').reverse().join('-'));
+  const endTimeStamp = Date.parse(endDate.toString());
+  let isDone = false;
+  const result = [];
+  function isTheLastDate(curDate) {
+    const curTimeStamp = Date.parse(curDate);
+    return curTimeStamp > endTimeStamp;
+  }
+  function addDate(day, count) {
+    for (let i = 0; i < count; i += 1) {
+      if (!isTheLastDate(date)) {
+        if (day === 'work') {
+          const workDay = new Intl.DateTimeFormat('en-GB')
+            .format(date)
+            .replaceAll('/', '-');
+          result.push(workDay);
+        }
+        const currentDate = date.getDate();
+        date.setDate(currentDate + 1);
+      } else {
+        break;
+      }
+    }
+  }
+  do {
+    if (!isTheLastDate(date)) {
+      addDate('work', countWorkDays);
+      addDate('off', countOffDays);
+    } else {
+      isDone = true;
+    }
+  } while (!isDone);
+  return result;
 }
 
 /**
