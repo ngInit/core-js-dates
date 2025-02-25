@@ -31,9 +31,8 @@ function dateToTimestamp(date) {
  * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
  * Date(2015, 10, 20, 23, 15, 1) => '23:15:01'
  */
-function getTime(/* date */) {
-  // return new Date(date).toTimeString().slice(0, 8);
-  throw new Error('Not implemented');
+function getTime(date) {
+  return new Date(date).toTimeString().slice(0, 8);
 }
 
 /**
@@ -47,11 +46,10 @@ function getTime(/* date */) {
  * '03 Dec 1995 00:12:00 UTC' => 'Sunday'
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
-function getDayName(/* date */) {
-  // const currentDate = new Date(date);
-  // const option = { weekday: 'long' };
-  // return new Intl.DateTimeFormat('en-US', option).format(currentDate);
-  throw new Error('Not implemented');
+function getDayName(date) {
+  const currentDate = new Date(date);
+  const option = { weekday: 'long' };
+  return new Intl.DateTimeFormat('en-US', option).format(currentDate);
 }
 
 /**
@@ -83,9 +81,8 @@ function getNextFriday(date) {
  * 1, 2024 => 31
  * 2, 2024 => 29
  */
-function getCountDaysInMonth(/* month, year */) {
-  // return Number(new Date(year, month, 0).getDate());
-  throw new Error('Not implemented');
+function getCountDaysInMonth(month, year) {
+  return Number(new Date(year, month, 0).getDate());
 }
 
 /**
@@ -123,12 +120,11 @@ function getCountDaysOnPeriod(dateStart, dateEnd) {
  * '2024-02-02', { start: '2024-02-02', end: '2024-03-02' } => true
  * '2024-02-10', { start: '2024-02-02', end: '2024-03-02' } => true
  */
-function isDateInPeriod(/* date, period */) {
-  // const givenData = Date.parse(date);
-  // const startData = Date.parse(period.start);
-  // const endData = Date.parse(period.end);
-  // return startData <= givenData && givenData <= endData;
-  throw new Error('Not implemented');
+function isDateInPeriod(date, period) {
+  const givenData = Date.parse(date);
+  const startData = Date.parse(period.start);
+  const endData = Date.parse(period.end);
+  return startData <= givenData && givenData <= endData;
 }
 
 /**
@@ -142,20 +138,19 @@ function isDateInPeriod(/* date, period */) {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  // const currentDate = new Date(date);
-  // const options = {
-  //   year: 'numeric',
-  //   month: 'numeric',
-  //   day: 'numeric',
-  //   hour: 'numeric',
-  //   minute: 'numeric',
-  //   second: 'numeric',
-  //   hour12: true,
-  //   timeZone: 'UTC',
-  // };
-  // return new Intl.DateTimeFormat('en-US', options).format(currentDate);
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const currentDate = new Date(date);
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true,
+    timeZone: 'UTC',
+  };
+  return new Intl.DateTimeFormat('en-US', options).format(currentDate);
 }
 
 /**
@@ -170,19 +165,18 @@ function formatDate(/* date */) {
  * 12, 2023 => 10
  * 1, 2024 => 8
  */
-function getCountWeekendsInMonth(/* month, year */) {
-  // const currentDate = new Date(year, month, 0);
-  // const daysInMonth = getCountDaysInMonth(month, year);
-  // let weekendsCount = 0;
-  // for (let i = 1; i <= daysInMonth; i += 1) {
-  //   currentDate.setDate(i);
-  //   const curDay = currentDate.getDay();
-  //   if (curDay === 0 || curDay === 6) {
-  //     weekendsCount += 1;
-  //   }
-  // }
-  // return weekendsCount;
-  throw new Error('Not implemented');
+function getCountWeekendsInMonth(month, year) {
+  const currentDate = new Date(year, month, 0);
+  const daysInMonth = getCountDaysInMonth(month, year);
+  let weekendsCount = 0;
+  for (let i = 1; i <= daysInMonth; i += 1) {
+    currentDate.setDate(i);
+    const curDay = currentDate.getDay();
+    if (curDay === 0 || curDay === 6) {
+      weekendsCount += 1;
+    }
+  }
+  return weekendsCount;
 }
 
 /**
